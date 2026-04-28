@@ -1,6 +1,6 @@
 const ALLOWED_EQUATION = /^[0-9xX+\-*/^().,\s_a-zA-Z]+$/;
 const ALLOWED_NAMES = new Set([
-  "x", "pi", "e", "sin", "cos", "tan", "asin", "acos", "atan", "sqrt", "log",
+  "x", "a", "b", "c", "pi", "e", "sin", "cos", "tan", "asin", "acos", "atan", "sqrt", "log",
   "ln", "exp", "abs", "pow", "floor", "ceil", "round", "min", "max",
 ]);
 
