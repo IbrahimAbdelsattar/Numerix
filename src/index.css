@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'katex/dist/katex.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* NumeriX dark-first theme. All colors HSL. */
+    --background: 222 60% 4%;        /* #050A14 */
+    --foreground: 210 40% 96%;       /* #F1F5F9 */
+
+    --card: 220 40% 10%;             /* #0D1526 */
+    --card-foreground: 210 40% 96%;
+
+    --popover: 220 40% 8%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 217 91% 60%;          /* #3B82F6 electric blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 70%;
+
+    --secondary: 258 90% 66%;        /* #8B5CF6 violet */
+    --secondary-foreground: 0 0% 100%;
+
+    --tertiary: 188 94% 43%;         /* #06B6D4 cyan */
+    --tertiary-foreground: 0 0% 100%;
+
+    --success: 160 84% 39%;          /* emerald */
+    --warning: 38 92% 50%;           /* amber */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --muted: 220 30% 14%;
+    --muted-foreground: 215 20% 65%; /* #94A3B8 */
+    --text-muted: 215 19% 35%;       /* #475569 */
+
+    --accent: 220 40% 14%;
+    --accent-foreground: 210 40% 96%;
+
+    --border: 217 50% 20%;
+    --input: 220 40% 12%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.85rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(258 90% 66%));
+    --gradient-tri: linear-gradient(135deg, hsl(217 91% 60%), hsl(258 90% 66%), hsl(188 94% 43%));
+    --gradient-text: linear-gradient(135deg, hsl(217 91% 70%) 0%, hsl(258 90% 75%) 50%, hsl(188 94% 60%) 100%);
+    --gradient-surface: linear-gradient(180deg, hsl(220 40% 10% / 0.6), hsl(222 60% 4% / 0.4));
+    --gradient-hero: radial-gradient(ellipse at top, hsl(217 91% 30% / 0.35), transparent 60%),
+                     radial-gradient(ellipse at bottom, hsl(258 90% 30% / 0.25), transparent 60%);
+
+    --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.18);
+    --shadow-glow-lg: 0 0 60px hsl(217 91% 60% / 0.28);
+    --shadow-violet: 0 0 40px hsl(258 90% 66% / 0.25);
+
+    --sidebar-background: 220 40% 8%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 40% 14%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 217 50% 18%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  /* Force dark theme always */
+  html { color-scheme: dark; }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html, body, #root { height: 100%; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-image: var(--gradient-hero);
+    background-attachment: fixed;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--background)); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(var(--primary) / 0.5), hsl(var(--secondary) / 0.5));
+    border-radius: 8px;
+    border: 2px solid hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, hsl(var(--primary) / 0.8), hsl(var(--secondary) / 0.8));
+  }
+
+  .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+  .glass-strong {
+    @apply bg-white/[0.06] backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+  .glow-card {
+    @apply glass transition-all duration-300;
+    box-shadow: 0 4px 24px -8px hsl(var(--background));
+  }
+  .glow-card:hover {
+    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: var(--shadow-glow);
+  }
+  .gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  .gradient-border {
+    position: relative;
+    background: hsl(var(--card));
+    border-radius: var(--radius);
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events: none;
+  }
+  .btn-gradient {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-glow);
+  }
+  .btn-gradient:hover {
+    box-shadow: var(--shadow-glow-lg);
+    transform: translateY(-1px);
+  }
+  .btn-ghost-glow {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all border border-primary/40 text-foreground hover:bg-primary/10 hover:border-primary;
+  }
+  .neon-grid {
+    background-image:
+      linear-gradient(hsl(var(--primary) / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-primary/30 bg-primary/10 text-primary;
+  }
+  .pulse-glow {
+    animation: pulse-glow 2.4s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .bg-grid-faint {
+    background-image:
+      linear-gradient(hsl(var(--primary) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--secondary) / 0.15); }
+  50% { box-shadow: 0 0 30px hsl(var(--primary) / 0.55), 0 0 60px hsl(var(--secondary) / 0.3); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* KaTeX color tweaks for dark theme */
+.katex { color: hsl(var(--foreground)); }
+.katex .mord, .katex .mbin, .katex .mrel, .katex .mopen, .katex .mclose { color: inherit; }

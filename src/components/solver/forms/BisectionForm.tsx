@@ -1,0 +1,149 @@
+import { useEffect, useRef, useState } from "react";
+import { MathKeyboard } from "../MathKeyboard";
+import { ExampleLoader } from "../ExampleLoader";
+import { tryCompile } from "@/lib/numerical/mathEngine";
+import { AlertCircle, CheckCircle2 } from "lucide-react";
+
+interface Props {
+  params: Record<string, any>;
+  onChange: (p: Record<string, any>) => void;
+}
+
+export function BisectionForm({ params, onChange }: Props) {
+  const { fx = "", xl = "", xu = "", tol = 1e-6, maxIter = 100, stop = "rel" } = params;
+  const fValid = fx ? tryCompile(fx) !== null : null;
+
+  // Bracket check
+  let bracketOk: boolean | null = null;
+  if (fValid && fx && xl !== "" && xu !== "") {
+    try {
+      const f = tryCompile(fx)!;
+      bracketOk = f(Number(xl)) * f(Number(xu)) < 0;
+    } catch { bracketOk = null; }
+  }
+
+  const fxRef = useRef<HTMLInputElement>(null);
+
+  return (
+    <div className="space-y-4">
+      <ExampleLoader methodId="bisection" onLoad={onChange} />
+
+      {/* f(x) */}
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-muted-foreground">f(x)</label>
+        <div className="flex gap-2">
+          <div className="relative flex-1">
+            <input
+              ref={fxRef}
+              value={fx}
+              onChange={e => onChange({ fx: e.target.value })}
+              placeholder="e.g. x^3 - x - 1"
+              className="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/10 text-sm font-mono focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
+            />
+            {fValid !== null && (
+              <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                {fValid
+                  ? <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                  : <AlertCircle className="w-4 h-4 text-red-500" />}
+              </div>
+            )}
+          </div>
+          <MathKeyboard onInsert={(t) => {
+            if (fxRef.current) {
+              const el = fxRef.current;
+              const start = el.selectionStart ?? el.value.length;
+              const newVal = el.value.slice(0, start) + t + el.value.slice(start);
+              onChange({ fx: newVal });
+              setTimeout(() => { el.focus(); el.setSelectionRange(start + t.length, start + t.length); }, 10);
+            }
+          }} />
+        </div>
+      </div>
+
+      {/* xl, xu */}
+      <div className="grid grid-cols-2 gap-3">
+        <div className="space-y-1.5">
+          <label className="text-xs font-medium text-muted-foreground">x<sub>l</sub> (lower bound)</label>
+          <input
+            type="number"
+            value={xl}
+            onChange={e => onChange({ xl: e.target.value === "" ? "" : Number(e.target.value) })}
+            placeholder="1"
+            className="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/10 text-sm font-mono focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
+          />
+        </div>
+        <div className="space-y-1.5">
+          <label className="text-xs font-medium text-muted-foreground">x<sub>u</sub> (upper bound)</label>
+          <input
+            type="number"
+            value={xu}
+            onChange={e => onChange({ xu: e.target.value === "" ? "" : Number(e.target.value) })}
+            placeholder="2"
+            className="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/10 text-sm font-mono focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
+          />
+        </div>
+      </div>
+
+      {/* Bracket check */}
+      {bracketOk !== null && (
+        <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium ${bracketOk ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-400" : "bg-red-500/10 border border-red-500/30 text-red-400"}`}>
+          {bracketOk
+            ? <><CheckCircle2 className="w-3.5 h-3.5" /> f(x<sub>l</sub>)·f(x<sub>u</sub>) &lt; 0 — valid bracket ✓</>
+            : <><AlertCircle className="w-3.5 h-3.5" /> f(x<sub>l</sub>)·f(x<sub>u</sub>) &gt; 0 — no sign change!</>}
+        </div>
+      )}
+
+      {/* Tolerance & Max Iter */}
+      <div className="grid grid-cols-2 gap-3">
+        <div className="space-y-1.5">
+          <label className="text-xs font-medium text-muted-foreground">Tolerance ε</label>
+          <select
+            value={tol}
+            onChange={e => onChange({ tol: Number(e.target.value) })}
+            className="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/10 text-sm focus:outline-none focus:border-primary"
+          >
+            <option value={1e-4}>10⁻⁴</option>
+            <option value={1e-6}>10⁻⁶</option>
+            <option value={1e-8}>10⁻⁸</option>
+            <option value={1e-10}>10⁻¹⁰</option>
+          </select>
+        </div>
+        <div className="space-y-1.5">
+          <label className="text-xs font-medium text-muted-foreground">Max Iterations</label>
+          <input
+            type="number"
+            value={maxIter}
+            onChange={e => onChange({ maxIter: Number(e.target.value) })}
+            min={1}
+            max={1000}
+            className="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/10 text-sm font-mono focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
+          />
+        </div>
+      </div>
+
+      {/* Stopping criterion */}
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-muted-foreground">Stopping Criterion</label>
+        <div className="flex gap-2">
+          {[
+            { val: "f", label: "|f(xr)| < ε" },
+            { val: "rel", label: "|(xₙ−xₙ₋₁)/xₙ| < ε" },
+          ].map(opt => (
+            <button
+              key={opt.val}
+              type="button"
+              onClick={() => onChange({ stop: opt.val })}
+              className={`flex-1 px-3 py-2 rounded-lg text-xs font-medium border transition ${
+                stop === opt.val
+                  ? "bg-primary/15 border-primary/40 text-primary"
+                  : "bg-white/[0.03] border-white/10 text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
