@@ -1,202 +1,242 @@
-# NumeriX — Numerical Analysis Virtual Lab
+<br/><br/>
 
-> Solve, visualize, and master every numerical method. From root-finding races to 3D convergence trajectories — numerical analysis reimagined.
+<!-- Animated Title -->
+<a href="#">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=36&pause=1000&color=7C3AED&center=true&vCenter=true&width=800&lines=Numerix+%F0%9F%9A%80;Enterprise+Data+Science+%26+AI;Interactive+Analytics+%26+ML;Built+by+Ibrahim+Abdelsattar" alt="Typing SVG"/>
+</a>
 
-![NumeriX](https://img.shields.io/badge/NumeriX-v1.0.0-blue?style=for-the-badge)
-![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript)
-![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=flat-square&logo=vite)
+<br/>
 
-## ✨ Features
+<p align="center">
+  <b>Enterprise-Grade Data Science & Software Engineering Solution</b><br/>
+  <i>Next.js · React · Tailwind CSS · TypeScript · Vite</i>
+</p>
 
-| Feature | Description |
-|---|---|
-| **Solver Lab** | Step-by-step execution of 9 numerical methods |
-| **Race Mode** | Run all root-finding methods simultaneously |
-| **3D Visualizer** | Animated convergence trajectories |
-| **Error Geometry** | Interactive error visualization lab |
-| **Learn Hub** | Per-method deep dives with live sliders |
-| **Quiz Mode** | Test your numerical analysis knowledge |
-| **Whiteboard** | Freehand drawing for working out problems |
-| **Newton Fractals** | Explore fractal basins of attraction |
-| **PDF Export** | Generate professional solution sheets |
+<br/>
 
-## 🏗 Architecture
+<!-- Badges Row -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-7C3AED?style=for-the-badge&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React-7C3AED?style=for-the-badge&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Tailwind%20CSS-7C3AED?style=for-the-badge&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TypeScript-7C3AED?style=for-the-badge&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vite-7C3AED?style=for-the-badge&logoColor=white"/>
+  <img src="https://img.shields.io/badge/License-Academic-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge"/>
+</p>
 
-**Frontend-only React application** — no backend server required.
+<br/>
+
+<!-- Quick Links -->
+<p align="center">
+  <a href="#-overview"><img src="https://img.shields.io/badge/📌-Overview-7C3AED?style=flat-square"/></a>
+  &nbsp;
+  <a href="#-core-features"><img src="https://img.shields.io/badge/🔥-Features-E11D48?style=flat-square"/></a>
+  &nbsp;
+  <a href="#%EF%B8%8F-system-architecture"><img src="https://img.shields.io/badge/🏗️-Architecture-0891B2?style=flat-square"/></a>
+  &nbsp;
+  <a href="#-technical-stack"><img src="https://img.shields.io/badge/⚙️-Tech%20Stack-16A34A?style=flat-square"/></a>
+  &nbsp;
+  <a href="#-getting-started"><img src="https://img.shields.io/badge/🚀-Getting%20Started-F59E0B?style=flat-square"/></a>
+</p>
+
+<br/>
+
+---
+
+## 📌 Overview
+
+**Numerix** is an advanced software and data science repository engineered by **Ibrahim Abdelsattar**. It implements end-to-end data processing pipelines, predictive machine learning models, and production-ready code structures tailored for analytical precision and operational reliability.
+
+> Designed for seamless integration, high scalability, and robust computational performance.
+
+---
+
+## 🎯 Problem & Solution Architecture
+
+<table>
+<tr>
+<td width="50%">
+
+### ❌ The Challenge
+
+Traditional analytical approaches face critical operational limitations:
+
+- 📉 Manual data wrangling and non-standardized preprocessing
+- 🔮 Lack of feature attribution and model explainability
+- ⚠️ Unoptimized hyperparameters leading to sub-optimal accuracy
+- 🔄 Inefficient deployment workflows and missing pipeline automation
+
+</td>
+<td width="50%">
+
+### ✅ Our Solution
+
+| Challenge | Implemented Solution |
+|-----------|----------------------|
+| Raw Data Noise | Automated cleaning & feature encoding |
+| Low Accuracy | Tuned ML ensembles & robust evaluation |
+| Deployment Gaps | Modular CLI/Web interfaces & reproducible scripts |
+| Missing Insights | Visual metric plots & structured reporting |
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🔥 Core Features
+
+<table>
+<tr>
+
+<td align="center" width="33%">
+<br/>
+<b>⚡ High Performance Architecture</b><br/><br/>
+Modular Code Structure<br/>
+Scalable Design Patterns<br/>
+Robust Error Handling<br/>
+Clean Interface Abstractions<br/><br/>
+</td>
+<td align="center" width="33%">
+<br/>
+<b>📊 Data Preprocessing & EDA</b><br/><br/>
+Automated Missing Value Imputation<br/>
+Feature Engineering & Scaling<br/>
+Outlier Detection & Removal<br/>
+Exploratory Data Analysis Plots<br/><br/>
+</td>
+<td align="center" width="33%">
+<br/>
+<b>🎯 Production Guardrails</b><br/><br/>
+Strict Input Validation<br/>
+Reproducible Seed Setting<br/>
+Model Artifact Persistence<br/>
+Comprehensive Logging<br/><br/>
+</td>
+</tr>
+</table>
+
+---
+
+## 🏗️ System Architecture & Data Flow
+
+<br/>
+
+```mermaid
+flowchart LR
+    A["📥 Data Ingestion
+Raw Datasets / Inputs"] --> B["🧹 Preprocessing & Cleaning
+Feature Scaling & Encoding"]
+    B --> C["⚙️ Feature Engineering
+Domain Transformation"]
+    C --> D["🤖 Machine Learning Pipeline
+Model Training & Evaluation"]
+    D --> E["📊 Predictive Output & Metrics
+Interactive Dashboard / Reports"]
+    style A fill:#1e1b4b,color:#a5b4fc
+    style B fill:#312e81,color:#c7d2fe
+    style D fill:#1e3a5f,color:#93c5fd
+    style E fill:#14532d,color:#86efac
+```
+
+---
+
+## ⚙️ Technical Stack
+
+<div align="center">
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Next.js** | Core Framework / Library | Primary computing and analytical engine |
+| **React** | Core Framework / Library | Primary computing and analytical engine |
+| **Tailwind CSS** | Core Framework / Library | Primary computing and analytical engine |
+| **TypeScript** | Core Framework / Library | Primary computing and analytical engine |
+| **Vite** | Core Framework / Library | Primary computing and analytical engine |
+
+</div>
+
+---
+
+
+
+## 📁 Directory Structure
+
+<details>
+<summary><b>📂 Click to expand repository tree</b></summary>
 
 ```
-numerix/
-├── src/                    # React + TypeScript frontend
-│   ├── components/         # Reusable UI components
-│   │   ├── solver/         # Solver lab components
-│   │   ├── learn/          # Learning hub components
-│   │   ├── layout/         # Navbar, Footer, PageShell
-│   │   └── ui/             # Base UI components
-│   ├── pages/              # Route pages
-│   │   ├── Landing.tsx     # Home page
-│   │   ├── Solver.tsx      # Solver lab
-│   │   ├── LearnHub.tsx    # Learning hub
-│   │   ├── CompareLab.tsx  # Race mode
-│   │   ├── Quiz.tsx        # Quiz mode
-│   │   ├── Whiteboard.tsx  # Drawing board
-│   │   ├── Developer.tsx   # Developer page
-│   │   └── ...
-│   ├── lib/                # Utilities & numerical methods
-│   │   └── numerical/      # Root-finding, linear algebra
-│   └── state/              # App context
-├── public/                 # Static assets
-├── dist/                   # Build output (generated)
-├── index.html              # Entry point
-└── vite.config.ts          # Vite configuration
+Numerix/
+├── .gitignore
+├── DEPLOY.md
+├── README.md
+├── components.json
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+│   ├── favicon.svg
+│   ├── profile.jpg
+│   ├── App.css
+│   ├── App.tsx
+│   │   ├── NavLink.tsx
+│   │   │   ├── CompareSetup.tsx
+│   │   │   ├── PostRaceResults.tsx
+│   │   │   ├── RaceDashboard.tsx
+│   │   │   ├── useCompare.ts
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── PageShell.tsx
+│   │   │   │   ├── AbsoluteErrorVisualizer.tsx
+│   │   │   │   ├── RelativeErrorVisualizer.tsx
+│   │   │   │   ├── TruncationErrorVisualizer.tsx
+│   │   │   ├── ExampleLoader.tsx
 ```
 
-## 🚀 Quick Start
+</details>
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- **Node.js** ≥ 18
-- **npm** (comes with Node.js)
 
-### Install & Run
+- Python 3.10+ (or Node.js 18+ for web apps)
+- Git & Virtualenv
+
+### Installation & Execution
 
 ```bash
-# Clone repository
-git clone https://github.com/your-org/numerix.git
-cd numerix
+# 1. Clone the repository
+git clone https://github.com/IbrahimAbdelsattar/Numerix.git
+cd Numerix
 
-# Install dependencies
+# 2. Set up virtual environment (Python)
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# 3. Install dependencies
 npm install
 
-# Start development server
+# 4. Launch project execution
 npm run dev
 ```
 
-Open [http://localhost:8080](http://localhost:8080)
+---
 
-### Build for Production
+## 👤 Author & Contact
 
-```bash
-# Create production build
-npm run build
+<div align="center">
 
-# Preview production build locally
-npm run preview
-```
+**Ibrahim Abdelsattar**  
+*Data Scientist & AI Specialist · MTI University (CS & AI, GPA 3.5)*
 
-Output goes to `dist/` folder.
+[Email](mailto:ibrahimabdelsattar042@gmail.com) · [GitHub](https://github.com/IbrahimAbdelsattar) · [LinkedIn](https://linkedin.com/in/ibrahim-abdelsattar)
 
-## 🏭 Production Deployment
+<br/>
 
-### Option 1: Netlify (Recommended)
+<img src="https://img.shields.io/badge/Made%20with-Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/Maintained%20by-Ibrahim%20Abdelsattar-7C3AED?style=for-the-badge"/>
 
-1. Connect your Git repository at [netlify.com](https://app.netlify.com)
-2. Build settings:
-   - **Build command:** `npm run build`
-   - **Publish directory:** `dist`
-3. Deploy — automatic deploys on every push
-
-### Option 2: Vercel
-
-1. Import project at [vercel.com](https://vercel.com)
-2. Framework preset: `Vite`
-3. Deploy — automatic preview deploys for PRs
-
-### Option 3: Cloudflare Pages
-
-1. Connect repository at [dash.cloudflare.com](https://dash.cloudflare.com)
-2. Build configuration:
-   - **Build command:** `npm run build`
-   - **Build output:** `/dist`
-3. Deploy
-
-### Option 4: Traditional Hosting
-
-```bash
-# Build locally
-npm ci
-npm run build
-
-# Upload dist/ folder contents to your web server
-# Ensure server is configured for SPAs (serve index.html for all routes)
-```
-
-**Nginx Configuration:**
-```nginx
-server {
-    listen 80;
-    server_name numerix.example.com;
-    root /var/www/numerix/dist;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-
-    location /assets/ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-}
-```
-
-## 📦 Project Structure
-
-### Key Files
-| File | Purpose |
-|---|---|
-| `vite.config.ts` | Vite build configuration, path aliases |
-| `tailwind.config.ts` | Tailwind CSS theme customization |
-| `tsconfig.json` | TypeScript compiler options |
-| `package.json` | Dependencies and scripts |
-
-### Available Scripts
-
-```bash
-npm run dev          # Development server (port 8080)
-npm run build        # Production build
-npm run preview      # Preview production build
-npm run lint         # ESLint check
-npm run typecheck    # TypeScript check
-npm test             # Run tests
-```
-
-## 🧪 Testing
-
-```bash
-# Run tests
-npm test
-
-# Watch mode
-npm run test:watch
-
-# Type checking
-npm run typecheck
-
-# Linting
-npm run lint
-```
-
-## � Customization
-
-### Adding New Methods
-
-Edit `src/lib/numerical/methods.ts` to add new numerical methods to the solver.
-
-### Theming
-
-Colors are defined in `tailwind.config.ts` and `src/index.css`.
-
-### SEO
-
-Update meta tags in `index.html` for your deployment.
-
-## 📝 Notes
-
-- **No backend required** — All computation runs client-side
-- **No database** — State is managed in React context
-- **No environment variables required** — Pure static frontend
-- **SPA routing** — Configure your host to serve `index.html` for all routes
-
-## 📄 License
-
-MIT © NumeriX Team
+</div>
