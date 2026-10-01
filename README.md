@@ -27,6 +27,35 @@ An interactive numerical analysis learning application with solvers, method comp
 
 Numerical operations run in the client; there is no required model API or database for the core solvers. Method metadata such as relative speed indicators is instructional rather than a universal benchmark. Choose appropriate bounds, starting values, and stopping criteria for each problem.
 
+## UML diagrams
+
+### Main workflow
+
+The solver prepares a problem for the browser engine, then supplies iteration data to the result components and optional PDF export.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI as Solver interface
+    participant Engine as Numerical engine
+    participant Results as Result and playback components
+    participant PDF as PDF export
+    User->>UI: Select method and enter problem
+    UI->>Engine: Validate inputs and run method
+    Engine-->>UI: Solution and calculation steps
+    UI->>Results: Set solution and iteration records
+    Results-->>User: Tables, plots, and convergence display
+    opt Step playback
+        User->>Results: Advance calculation step
+        Results-->>User: Highlight selected iteration
+    end
+    opt Export
+        User->>Results: Request PDF
+        Results->>PDF: Render calculation report
+        PDF-->>User: Download report
+    end
+```
+
 ## Getting started
 
 ```bash
